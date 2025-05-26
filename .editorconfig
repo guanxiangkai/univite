@@ -1,0 +1,33 @@
+# EditorConfig 配置文件
+# 帮助开发者在不同的编辑器和 IDE 之间定义和维护一致的编码风格
+# 详情参考: https://editorconfig.org
+
+# 表明这是最顶层的配置文件，不再向上查找
+root = true
+
+# 所有文件通用配置
+[*]
+# 文件编码
+charset = utf-8
+# 缩进使用空格
+indent_style = space
+# 默认缩进大小为 2 个空格
+indent_size = 2
+# 文件结尾插入一个新行
+insert_final_newline = true
+# 删除行尾空白字符
+trim_trailing_whitespace = true
+# 换行符使用 LF (Unix/Linux/macOS 风格)
+end_of_line = lf
+
+# 前端文件专用配置 (JavaScript, TypeScript, Vue, CSS等)
+[*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,vue,css,scss,sass,less,styl}]
+# 最大行长度为 100 个字符
+max_line_length = 100
+
+# Markdown 文件配置
+[*.md]
+# Markdown 文件中尾部空格有特殊意义，不自动移除
+trim_trailing_whitespace = false
+# 允许更长的行，因为 Markdown 中可能包含较长的链接等内容
+max_line_length = 120
