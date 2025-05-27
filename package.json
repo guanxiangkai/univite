@@ -4,18 +4,19 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --mode development",
+    "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview --mode production",
-    "build-only": "vite build --mode production",
+    "preview": "vite preview",
+    "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint:oxlint": "oxlint src --fix -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint src --fix",
     "lint": "run-s lint:*",
-    "format": "NODE_OPTIONS=\"--experimental-strip-types\" prettier --write src --ignore-path .gitignore"
+    "format": "set NODE_OPTIONS=\"--experimental-strip-types\" prettier --write src --ignore-path .gitignore"
   },
   "dependencies": {
     "pinia": "^3.0.1",
+    "pinia-plugin-persistedstate-2": "^2.0.30",
     "vue": "^3.5.13"
   },
   "devDependencies": {
