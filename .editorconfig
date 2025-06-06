@@ -1,0 +1,25 @@
+# EditorConfig 帮助多个开发者在项目中保持一致的代码风格
+# 更多信息请参考：https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Markdown 文件通常不去除行尾的空格，因为可能用于换行
+[*.md]
+trim_trailing_whitespace = false
+
+# Makefile 文件必须使用 Tab 缩进
+[Makefile]
+indent_style = tab
+
+# 忽略二进制文件的规则（避免无意义的格式化）
+[*.{png,jpg,jpeg,gif,ico,svg,pdf,zip,exe}]
+indent_style = unset
+trim_trailing_whitespace = unset
+insert_final_newline = unset

@@ -1,0 +1,20 @@
+# 设置所有文本文件以 LF (\n) 为统一的换行符
+* text=auto eol=lf
+
+# 明确指定文本文件类型，以确保在任何环境下的一致格式
+*.{md,markdown,MD} text eol=lf
+*.{js,ts,jsx,tsx,css,scss,less,html,vue,json,yaml,yml,xml} text eol=lf
+*.{sh,py} text eol=lf
+
+# 特殊文件设置为二进制格式，避免 Git 对其进行文本差异比较
+*.{png,jpg,jpeg,gif,ico,svg,pdf,zip,tar,gz,exe,dll,so} binary
+
+# 排除特定文件不做自动行尾转换处理
+Makefile text eol=lf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# 明确 Git 自身文件行为
+.gitignore text eol=lf
+.gitattributes text eol=lf
+.editorconfig text eol=lf
