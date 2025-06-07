@@ -3,6 +3,9 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import uni from '@dcloudio/vite-plugin-uni'
 import UniPages from '@uni-helper/vite-plugin-uni-pages'
 import UniManifest from '@uni-helper/vite-plugin-uni-manifest'
+import UnoCSS from 'unocss/vite'
+import Components from '@uni-helper/vite-plugin-uni-components'
+import AutoImport from 'unplugin-auto-import/vite'
 
 export default defineConfig(({mode}: ConfigEnv) => {
     process.env = {...process.env, ...loadEnv(mode, process.cwd())}
@@ -21,6 +24,38 @@ export default defineConfig(({mode}: ConfigEnv) => {
                 dts: 'src/types/uni-pages.d.ts',
             }),
             UniManifest(),
+            Components({
+                dts: 'src/types/components.d.ts',
+                resolvers: [
+                    // 内置的wot-design-uni组件解析器
+                    (name) => {
+                        // wot-design-uni组件前缀为wd
+                        if (name.match(/^wd[A-Z]/)) {
+                            const compName = name.slice(2)
+                            return {
+                                name: compName,
+                                from: 'wot-design-uni'
+                            }
+                        }
+                        // z-paging组件解析
+                        if (name === 'zPaging') {
+                            return {
+                                name: 'z-paging',
+                                from: 'z-paging'
+                            }
+                        }
+                    }
+                ]
+            }),
+            AutoImport({
+                include: [
+                    /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+                    /\.vue$/, /\.vue\?vue/, // .vue
+                ],
+                imports: ['vue', 'uni-app'],
+                dts: 'src/types/auto-imports.d.ts',
+            }),
+            UnoCSS(),
             // @ts-expect-error missing types
             uni.default(),
         ],
