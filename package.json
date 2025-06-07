@@ -23,7 +23,6 @@
   "devDependencies": {
     "@dcloudio/types": "^3.4.15",
     "@dcloudio/vite-plugin-uni": "3.0.0-4060620250520001",
-    "@tsconfig/node22": "^22.0.2",
     "@types/node": "^22.15.29",
     "@types/wechat-miniprogram": "^3.4.8",
     "@uni-helper/vite-plugin-uni-manifest": "^0.2.8",
@@ -35,15 +34,15 @@
     "eslint": "^9.28.0",
     "eslint-plugin-oxlint": "^0.16.12",
     "eslint-plugin-vue": "~10.0.1",
-    "jiti": "^2.4.2",
-    "npm-run-all2": "^7.0.2",
+    "mockjs": "^1.1.0",
     "oxlint": "^0.16.12",
     "prettier": "3.5.3",
     "sass": "^1.89.1",
     "typescript": "~5.8.3",
+    "uni-mini-router": "^0.1.6",
+    "uni-parse-pages": "^0.0.1",
     "vite": "^6.3.5",
-    "vite-plugin-vue-devtools": "^7.7.6",
-    "vitest": "^3.2.2",
+    "vite-tsconfig-paths": "^5.1.4",
     "vue-tsc": "^2.2.10"
   }
 }

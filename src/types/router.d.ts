@@ -1,30 +1,6 @@
-export interface RouteMeta {
-  isTabPage?: boolean;
-
-  [key: string]: any;
-}
-
+// 定义路由类型
 export interface Route {
-  path: string;
-  name?: string;
-  meta?: RouteMeta;
+    path: string;
+    name?: string;
+    meta?: Record<string, any>;
 }
-
-export interface TabBarItem {
-  pagePath: string;
-
-  [key: string]: any;
-}
-
-export interface PageItem {
-  path: string;
-  name?: string;
-
-  [key: string]: any;
-}
-
-export interface SubPackageItem {
-  root: string;
-  pages: PageItem[];
-}
-
