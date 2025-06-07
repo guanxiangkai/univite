@@ -6,6 +6,7 @@ import UniManifest from '@uni-helper/vite-plugin-uni-manifest'
 import UnoCSS from 'unocss/vite'
 import Components from '@uni-helper/vite-plugin-uni-components'
 import AutoImport from 'unplugin-auto-import/vite'
+import {viteMockServe} from 'vite-plugin-mock'
 
 export default defineConfig(({mode}: ConfigEnv) => {
     process.env = {...process.env, ...loadEnv(mode, process.cwd())}
@@ -56,6 +57,22 @@ export default defineConfig(({mode}: ConfigEnv) => {
                 dts: 'src/types/auto-imports.d.ts',
             }),
             UnoCSS(),
+            // 配置Mock服务
+            viteMockServe({
+                // 忽略以_开头的文件
+                ignore: /^_/,
+                // 解析根目录下的mock文件夹
+                mockPath: 'src/mock',
+                // 开发环境启用
+                localEnabled: process.env.NODE_ENV === 'development',
+                // 生产环境启用，有需要可以改为true
+                prodEnabled: false,
+                // 生产环境下读取mock的文件，如果prodEnabled为false则不生效
+                injectCode: `
+                  import { setupProdMockServer } from '../src/mock';
+                  setupProdMockServer();
+                `,
+            }),
             // @ts-expect-error missing types
             uni.default(),
         ],

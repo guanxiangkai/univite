@@ -85,6 +85,32 @@ pnpm format
 
 项目配置了组件自动引入，无需手动 import 即可使用 wot-design-uni 和 z-paging 组件。
 
+### 工具类集成
+
+项目已集成多种实用工具类，用于提高开发效率：
+
+- **请求工具**：基于原生 request 封装，支持请求拦截、响应拦截、统一错误处理
+- **Mock 数据**：基于 @faker-js/faker 和 vite-plugin-mock 的数据模拟工具
+- **国际化**：基于 vue-i18n 的多语言支持
+- **防抖节流**：基于 @vueuse/core 的防抖和节流功能
+- **日期处理**：基于 date-fns-tz 的时间日期处理工具
+- **表单验证**：基于 @vuelidate/core 的表单验证
+- **图表绘制**：基于 ucharts 的图表工具
+- **地图服务**：基于 amap-wx 的地图功能
+- **数据加密**：基于 Web Crypto API 的加密解密工具
+
+所有工具类可通过 `@/utils` 导入使用：
+
+```ts
+import { Utils } from '@/utils';
+
+// 示例：发送请求
+Utils.Http.get('/api/users');
+
+// 示例：日期格式化
+Utils.Date.formatDate(new Date(), 'yyyy-MM-dd');
+```
+
 ### UnoCSS
 
 项目集成了 UnoCSS，提供了丰富的原子化 CSS 类，可以直接在模板中使用：
