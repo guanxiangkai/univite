@@ -1,6 +1,12 @@
 <script lang="ts" setup>
 import {ref} from 'vue';
 import {onLoad} from '@dcloudio/uni-app';
+import {useUserStore} from '@/stores/user/userStore';
+import {useTokenStore} from '@/stores/auth/tokenStore';
+
+// 使用Pinia存储
+const userStore = useUserStore();
+const tokenStore = useTokenStore();
 
 // 用户信息（默认未登录）
 const userInfo = ref({
@@ -23,22 +29,30 @@ const settingsList = ref([
 // 页面加载
 onLoad(() => {
   console.log('用户页面加载');
-  // 这里可以检查登录状态，例如从存储中读取
+  // 使用Pinia存储检查登录状态
   checkLoginStatus();
 });
 
-// 检查登录状态（模拟）
+// 检查登录状态
 const checkLoginStatus = () => {
-  // 实际应用中这里会检查本地存储或调用API
-  // 这里仅做演示
-  const hasLogin = uni.getStorageSync('hasLogin');
-
-  if (hasLogin) {
+  // 使用tokenStore检查登录状态
+  if (tokenStore.isLoggedIn) {
     userInfo.value = {
       isLoggedIn: true,
-      username: '测试用户',
-      avatar: '/static/avatar/default.png'
+      username: userStore.displayName,
+      avatar: userStore.avatarUrl
     };
+  } else if (tokenStore.refreshToken) {
+    // 有刷新令牌但访问令牌已过期，尝试刷新
+    tokenStore.refreshAccessToken().then(success => {
+      if (success) {
+        userInfo.value = {
+          isLoggedIn: true,
+          username: userStore.displayName,
+          avatar: userStore.avatarUrl
+        };
+      }
+    });
   }
 };
 
@@ -79,8 +93,10 @@ const handleLogout = () => {
     content: '确定要退出登录吗？',
     success: (res) => {
       if (res.confirm) {
-        // 清除登录状态
-        uni.removeStorageSync('hasLogin');
+        // 清除登录状态 - 使用Pinia存储
+        tokenStore.clearToken();
+
+        // 更新UI状态
         userInfo.value.isLoggedIn = false;
         userInfo.value.username = '';
 

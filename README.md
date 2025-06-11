@@ -43,8 +43,8 @@
 ├── .eslintrc.cjs      # ESLint 配置
 ├── .prettierrc        # Prettier 配置
 ├── tsconfig.json      # TypeScript 配置
-├── unocss.config.ts   # UnoCSS 配置
-└── vite.config.ts     # Vite 配置
+├── unocss.configStore.ts   # UnoCSS 配置
+└── vite.configStore.ts     # Vite 配置
 ```
 
 ## 快速开始
