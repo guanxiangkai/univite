@@ -1,4 +1,4 @@
-import type {WebRequestConfig, WebResponse} from '@/types/http/request';
+import type {WebRequestConfig, WebResponse} from '@/types/request';
 
 /**
  * 类型守卫：判断接口返回的数据是否为 WebResponse<T> 结构

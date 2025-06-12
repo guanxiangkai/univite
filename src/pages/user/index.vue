@@ -1,12 +1,11 @@
 <script lang="ts" setup>
 import {ref} from 'vue';
 import {onLoad} from '@dcloudio/uni-app';
-import {useUserStore} from '@/stores/user/userStore';
-import {useTokenStore} from '@/stores/auth/tokenStore';
+
 
 // 使用Pinia存储
-const userStore = useUserStore();
-const tokenStore = useTokenStore();
+// const userStores = userStore();
+// const tokenStores = tokenStore();
 
 // 用户信息（默认未登录）
 const userInfo = ref({
@@ -35,25 +34,25 @@ onLoad(() => {
 
 // 检查登录状态
 const checkLoginStatus = () => {
-  // 使用tokenStore检查登录状态
-  if (tokenStore.isLoggedIn) {
-    userInfo.value = {
-      isLoggedIn: true,
-      username: userStore.displayName,
-      avatar: userStore.avatarUrl
-    };
-  } else if (tokenStore.refreshToken) {
-    // 有刷新令牌但访问令牌已过期，尝试刷新
-    tokenStore.refreshAccessToken().then(success => {
-      if (success) {
-        userInfo.value = {
-          isLoggedIn: true,
-          username: userStore.displayName,
-          avatar: userStore.avatarUrl
-        };
-      }
-    });
-  }
+  // // tokenStores
+  // if (tokenStores.isLoggedIn) {
+  //   userInfo.value = {
+  //     isLoggedIn: true,
+  //     username: userStores.displayName,
+  //     avatar: userStores.avatarUrl
+  //   };
+  // } else if (tokenStores.refreshToken) {
+  //   // 有刷新令牌但访问令牌已过期，尝试刷新
+  //   tokenStores.refreshAccessToken().then(success => {
+  //     if (success) {
+  //       userInfo.value = {
+  //         isLoggedIn: true,
+  //         username: userStores.displayName,
+  //         avatar: userStores.avatarUrl
+  //       };
+  //     }
+  //   });
+  // }
 };
 
 // 前往登录页
@@ -64,7 +63,7 @@ const goToLogin = () => {
 };
 
 // 处理设置项点击
-const handleSettingClick = (item: any) => {
+const handleSettingClick = (item: unknown) => {
   if (!userInfo.value.isLoggedIn) {
     uni.showModal({
       title: '提示',
@@ -88,25 +87,25 @@ const handleSettingClick = (item: any) => {
 
 // 退出登录
 const handleLogout = () => {
-  uni.showModal({
-    title: '提示',
-    content: '确定要退出登录吗？',
-    success: (res) => {
-      if (res.confirm) {
-        // 清除登录状态 - 使用Pinia存储
-        tokenStore.clearToken();
-
-        // 更新UI状态
-        userInfo.value.isLoggedIn = false;
-        userInfo.value.username = '';
-
-        uni.showToast({
-          title: '已退出登录',
-          icon: 'success'
-        });
-      }
-    }
-  });
+  // uni.showModal({
+  //   title: '提示',
+  //   content: '确定要退出登录吗？',
+  //   success: (res) => {
+  //     if (res.confirm) {
+  //       // 清除登录状态 - 使用Pinia存储
+  //       tokenStore.clearToken();
+  //
+  //       // 更新UI状态
+  //       userInfo.value.isLoggedIn = false;
+  //       userInfo.value.username = '';
+  //
+  //       uni.showToast({
+  //         title: '已退出登录',
+  //         icon: 'success'
+  //       });
+  //     }
+  //   }
+  // });
 };
 </script>
 

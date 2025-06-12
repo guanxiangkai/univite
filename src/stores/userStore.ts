@@ -4,12 +4,12 @@
  * 适配微信小程序和 H5 环境
  */
 import {defineStore} from 'pinia';
-import type {PersistContext, UserState} from '@/types';
+import type {PersistContext, UserState} from '@/types/pinia-persistedstate2';
 
 /**
  * 用户信息存储定义
  */
-export const useUserStore = defineStore('user', {
+export const userStore = defineStore('user', {
   // 状态定义
   state: (): UserState => ({
     // 用户个人偏好设置
