@@ -4,7 +4,7 @@
  * 适配微信小程序和 H5 环境
  */
 import {defineStore} from 'pinia';
-import type {PersistContext, UserState} from '@/utils/stores/types/pinia-persistedstate2.d.ts';
+import type {PersistContext, UserState} from '@/types';
 
 /**
  * 用户信息存储定义
@@ -37,7 +37,7 @@ export const useUserStore = defineStore('user', {
      * @returns {string} 用户头像URL
      */
     avatarUrl(): string {
-      return this.profile.avatar || '/static/images/default-avatar.png';
+      return this.profile.avatar || '/assets/images/default-avatar.png';
     },
 
     /**

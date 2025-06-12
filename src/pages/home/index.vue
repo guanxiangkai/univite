@@ -4,9 +4,9 @@ import {onLoad} from '@dcloudio/uni-app';
 
 // 轮播图数据
 const swiperList = ref([
-  {id: 1, image: '/static/swiper/banner1.jpg', title: '精选商品'},
-  {id: 2, image: '/static/swiper/banner2.jpg', title: '限时活动'},
-  {id: 3, image: '/static/swiper/banner3.jpg', title: '新品上架'}
+  {id: 1, image: '/assets/swiper/banner1.jpg', title: '精选商品'},
+  {id: 2, image: '/assets/swiper/banner2.jpg', title: '限时活动'},
+  {id: 3, image: '/assets/swiper/banner3.jpg', title: '新品上架'}
 ]);
 
 // 功能模块数据
@@ -19,10 +19,10 @@ const featureList = ref([
 
 // 商品列表数据
 const goodsList = ref([
-  {id: 1, name: '商品1', price: 99, image: '/static/goods/item1.jpg'},
-  {id: 2, name: '商品2', price: 199, image: '/static/goods/item2.jpg'},
-  {id: 3, name: '商品3', price: 299, image: '/static/goods/item3.jpg'},
-  {id: 4, name: '商品4', price: 399, image: '/static/goods/item4.jpg'}
+  {id: 1, name: '商品1', price: 99, image: '/assets/goods/item1.jpg'},
+  {id: 2, name: '商品2', price: 199, image: '/assets/goods/item2.jpg'},
+  {id: 3, name: '商品3', price: 299, image: '/assets/goods/item3.jpg'},
+  {id: 4, name: '商品4', price: 399, image: '/assets/goods/item4.jpg'}
 ]);
 
 // 页面加载函数

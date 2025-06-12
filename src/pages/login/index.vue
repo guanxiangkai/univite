@@ -176,7 +176,7 @@ onLoad(() => {
               // 设置用户信息
               userStore.updateProfile({
                 username: '演示用户',
-                avatar: '/static/avatar/default.png',
+                avatar: '/assets/avatar/default.png',
                 email: 'demo@example.com'
               });
 
@@ -218,7 +218,7 @@ onLoad(() => {
             // 演示：模拟获取微信用户信息
             const wxUserInfo = {
               nickName: '微信用户',
-              avatarUrl: '/static/avatar/default.png'
+              avatarUrl: '/assets/avatar/default.png'
             };
 
             // 设置令牌

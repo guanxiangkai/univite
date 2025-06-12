@@ -31,14 +31,14 @@ export default defineUniPages({
     borderStyle: 'black',
     list: [
       {
-        iconPath: '/static/tabbar/home_default.png',
-        selectedIconPath: '/static/tabbar/home_active.png',
+        iconPath: '/assets/tabbar/home_default.png',
+        selectedIconPath: '/assets/tabbar/home_active.png',
         pagePath: 'pages/home/index',
         text: '首页'
       },
       {
-        iconPath: '/static/tabbar/user_default.png',
-        selectedIconPath: '/static/tabbar/user_active.png',
+        iconPath: '/assets/tabbar/user_default.png',
+        selectedIconPath: '/assets/tabbar/user_active.png',
         pagePath: 'pages/user/index',
         text: '我的'
       }

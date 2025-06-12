@@ -29,7 +29,7 @@ export default defineConfigWithVueTs(
         '**/temp/**',
         '**/tmp/**',
         '**/public/**',
-        '**/static/**',
+      '**/assets/**',
         '**/out/**',
         '**/build/**',
         '**/generated/**',

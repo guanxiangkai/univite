@@ -1,7 +1,7 @@
 import {createRouter} from 'uni-mini-router';
 import pagesJson from '@/pages.json';
 import parsePages from 'uni-parse-pages';
-import {type Route} from '@/utils/router/types/router';
+import {type Route} from '@/types/router/router';
 
 
 // 自动解析pages.json

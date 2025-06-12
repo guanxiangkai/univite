@@ -3,7 +3,7 @@
  * 处理认证令牌的存储、刷新和验证
  */
 import {defineStore} from 'pinia';
-import type {TokenState} from "@/utils/stores/types/pinia-persistedstate2";
+import type {TokenState} from "@/types";
 
 /**
  * 令牌存储定义

@@ -12,7 +12,7 @@ const tokenStore = useTokenStore();
 const userInfo = ref({
   isLoggedIn: false,
   username: '',
-  avatar: '/static/avatar/default.png'
+  avatar: '/assets/avatar/default.png'
 });
 
 // 设置列表
