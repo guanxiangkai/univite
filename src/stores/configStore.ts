@@ -4,7 +4,7 @@
  * 适配微信小程序和 H5 环境
  */
 import {defineStore} from 'pinia';
-import type {ConfigState} from "@/types";
+import type {ConfigState} from "@/types/pinia-persistedstate2";
 
 /**
  * 系统配置存储定义

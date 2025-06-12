@@ -25,7 +25,7 @@ export default defineConfig(({mode}: ConfigEnv) => {
             }),
             UniManifest(),
             Components({
-                dts: 'src/types/components.d.ts',
+              dts: 'src/types/components/components.d.ts',
                 resolvers: [
                     // 内置的wot-design-uni组件解析器
                     (name) => {
@@ -53,7 +53,7 @@ export default defineConfig(({mode}: ConfigEnv) => {
                     /\.vue$/, /\.vue\?vue/, // .vue
                 ],
                 imports: ['vue', 'uni-app'],
-                dts: 'src/types/auto-imports.d.ts',
+              dts: 'src/types/imports/auto-imports.d.ts',
             }),
             UnoCSS(),
             // @ts-expect-error missing types
