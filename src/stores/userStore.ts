@@ -4,7 +4,7 @@
  * 适配微信小程序和 H5 环境
  */
 import {defineStore} from 'pinia';
-import type {PersistContext, UserState} from '@/types/pinia-persistedstate2';
+import type {PersistContext, UserState} from '@/types';
 
 /**
  * 用户信息存储定义

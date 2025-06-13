@@ -1,5 +1,5 @@
 /**
- * 基于 uni.request 的 TypeScript 强类型 HTTP 工具类封装
+ * 基于 uni.api 的 TypeScript 强类型 HTTP 工具类封装
  * 全程无 any，类型安全友好，适用于 Web、小程序多端
  */
 

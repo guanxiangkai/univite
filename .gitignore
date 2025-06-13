@@ -50,5 +50,5 @@ tmp/
 temp/
 *.tmp
 /src/pages.json
-/src/types/uni-pages.d.ts
-/src/types/auto-imports.d.ts
+/src/types/imports/auto-imports.d.ts
+/src/types/pages/uni-pages.d.ts

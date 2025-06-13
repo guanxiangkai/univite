@@ -9,7 +9,7 @@ import {createPinia} from 'pinia';
 // 导入持久化插件创建函数
 import {createPersistedStatePlugin} from 'pinia-plugin-persistedstate-2';
 // 导入存储工具类
-import {Storage} from '@/utils/storage'
+import {Storage} from '@/utils/stores/storage.ts'
 
 
 /**

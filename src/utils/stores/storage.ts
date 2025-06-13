@@ -2,20 +2,7 @@
  * 存储工具类
  * 提供多端兼容的本地存储方法
  */
-
-/**
- * 存储接口定义
- * 与 Web Storage API 保持一致
- */
-export interface IStorage {
-  setItem(key: string, value: string): void;
-
-  getItem(key: string): string | null;
-
-  removeItem(key: string): void;
-
-  clear?(): void;
-}
+import type {IStorage} from '@/types'
 
 /**
  * 多端兼容的存储适配器

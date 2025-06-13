@@ -2,6 +2,19 @@
  * Pinia 持久化插件类型定义
  * 用于增强 TypeScript 的类型检查和智能提示
  */
+/**
+ * 存储接口定义
+ * 与 Web Storage API 保持一致
+ */
+export interface IStorage {
+  setItem(key: string, value: string): void;
+
+  getItem(key: string): string | null;
+
+  removeItem(key: string): void;
+
+  clear?(): void;
+}
 
 /**
  * 持久化上下文接口

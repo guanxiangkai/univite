@@ -1,4 +1,4 @@
-import type {WebRequestConfig, WebResponse} from '@/types/request';
+import type {WebRequestConfig, WebResponse} from '@/types/api/request';
 
 /**
  * 类型守卫：判断接口返回的数据是否为 WebResponse<T> 结构
@@ -60,7 +60,7 @@ function request<TResp = unknown, TReq = Record<string, unknown>>(config: WebReq
   });
 }
 
-// GET、POST等方法参考前一版，只需直接调用上面的 request
+// GET、POST等方法参考前一版，只需直接调用上面的 api
 
 function get<TResp = unknown, TParams = undefined>(
   url: string,
