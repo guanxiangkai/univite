@@ -1,5 +1,5 @@
-import type { WebRequestConfig, WebResponse } from '@/types/api/request';
-import { handle401, requestInterceptor } from './authHandler';
+import type { WebRequestConfig, WebResponse } from '@/types';
+import { handle401, requestInterceptor } from './authService';
 
 /**
  * 类型守卫：判断接口返回的数据是否为 WebResponse<T> 结构
@@ -25,7 +25,7 @@ function request<TResp = unknown, TReq = Record<string, unknown>>(
   config: WebRequestConfig<TReq>
 ): Promise<WebResponse<TResp>> {
   // 应用请求拦截器，处理Token等信息
-  const processedConfig = requestInterceptor(config);
+  const processedConfig = requestInterceptor<TReq>(config);
 
   // 显示加载提示
   if (processedConfig.showLoading) {
@@ -51,7 +51,7 @@ function request<TResp = unknown, TReq = Record<string, unknown>>(
           }
 
           // 尝试刷新Token并重试请求
-          handle401<TResp>(processedConfig, request)
+          handle401<TResp, TReq>(processedConfig, request)
             .then(resolve)
             .catch(reject);
           return;
@@ -67,7 +67,7 @@ function request<TResp = unknown, TReq = Record<string, unknown>>(
             }
 
             // 尝试刷新Token并重试请求
-            handle401<TResp>(processedConfig, request)
+            handle401<TResp, TReq>(processedConfig, request)
               .then(resolve)
               .catch(reject);
             return;

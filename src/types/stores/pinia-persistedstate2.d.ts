@@ -62,4 +62,16 @@ export interface TokenState {
   expiresAt: number;
   // 令牌类型
   tokenType: string;
+
+  /**
+   * 计算属性：判断token是否过期
+   * @readonly
+   */
+  readonly isExpired?: boolean;
+
+  /**
+   * 计算属性：生成完整的授权头字符串
+   * @readonly
+   */
+  readonly authHeader?: string;
 }
