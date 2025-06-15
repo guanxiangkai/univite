@@ -42,6 +42,6 @@ interface ImportMetaEnv {
   readonly VITE_DISABLE_DEVTOOLS: string
 }
 
-interface ImportMeta {
+export interface ImportMeta {
   readonly env: ImportMetaEnv
 }
