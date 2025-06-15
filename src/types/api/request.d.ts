@@ -1,23 +1,72 @@
 /**
- * 基于 uni.api 的 TypeScript 强类型 HTTP 工具类封装
- * 全程无 any，类型安全友好，适用于 Web、小程序多端
+ * API请求和响应的类型定义
  */
 
-export interface WebRequestConfig<TData = Record<string, unknown>> {
-  url: string; // 请求地址
+
+/**
+ * 通用请求配置
+ */
+export interface WebRequestConfig<T = any> {
+  // 请求URL
+  url: string;
+  // 请求方法
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE';
-  data?: TData; // 请求体或url参数（类型透明，可泛型约束）
-  headers?: Record<string, string>; // 请求头
-  timeout?: number; // 超时（毫秒）
-  showLoading?: boolean; // 是否显示loading
-  loadingText?: string;  // loading内容
+  // 请求头
+  headers?: Record<string, string>;
+  // 请求数据/参数
+  data?: T;
+  // 请求超时时间（毫秒）
+  timeout?: number;
+  // 是否显示加载指示器
+  showLoading?: boolean;
+  // 加载指示器文本
+  loadingText?: string;
+  // 内部属性：是否为重试请求
+  _isRetry?: boolean;
 }
 
 /**
- * 统一的响应泛型（业务成功/失败均可扩展字段）
+ * 通用响应结构
  */
-export interface WebResponse<T = unknown> {
-  code: number | string;
+export interface WebResponse<T = any> {
+  // 业务状态码
+  code: number;
+  // 响应消息
   message: string;
+  // 响应数据
   data: T;
+  // 其他可能的属性
+  [key: string]: any;
+}
+
+/**
+ * HTTP状态码类型
+ * 定义常见的HTTP状态码，方便响应处理
+ */
+export enum HttpStatusCode {
+  // 2xx 成功
+  OK = 200,
+  CREATED = 201,
+  ACCEPTED = 202,
+  NO_CONTENT = 204,
+
+  // 3xx 重定向
+  MOVED_PERMANENTLY = 301,
+  FOUND = 302,
+  SEE_OTHER = 303,
+  NOT_MODIFIED = 304,
+
+  // 4xx 客户端错误
+  BAD_REQUEST = 400,
+  UNAUTHORIZED = 401,
+  FORBIDDEN = 403,
+  NOT_FOUND = 404,
+  METHOD_NOT_ALLOWED = 405,
+  REQUEST_TIMEOUT = 408,
+
+  // 5xx 服务器错误
+  INTERNAL_SERVER_ERROR = 500,
+  BAD_GATEWAY = 502,
+  SERVICE_UNAVAILABLE = 503,
+  GATEWAY_TIMEOUT = 504
 }

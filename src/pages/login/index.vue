@@ -128,8 +128,8 @@ onLoad(() => {
       </button>
       <script lang="ts" setup>
         import {ref} from 'vue';
-        import {useUserStore} from '@/stores/userStore.ts';
-        import {useTokenStore} from '@/stores/tokenStore.ts';
+        import {useUserStore} from '@/stores/user/userStore.ts';
+        import {useTokenStore} from '@/stores/api/tokenStore.ts';
 
         // 使用Pinia存储
         const userStore = useUserStore();
