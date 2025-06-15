@@ -2,9 +2,9 @@
  * Token验证与刷新处理工具
  * 处理接口响应中的Token相关问题，如过期、无效等
  */
-import { getToken, setToken, clearToken } from '@/stores';
-import { refreshTokenAPI } from './refreshToken';
-import type { WebRequestConfig, WebResponse,TokenState } from '@/types';
+import {getToken, setToken, clearToken} from '@/stores';
+import { refreshTokenAPI } from './tokenRefresher';
+import type { WebRequestConfig, WebResponse, TokenState } from '@/types';
 
 // 全局变量 - 标记当前是否有正在进行的Token刷新操作
 let _refreshingTokenPromise: Promise<TokenState> | null = null;
@@ -15,13 +15,19 @@ let _refreshingTokenPromise: Promise<TokenState> | null = null;
  * 2. 刷新成功后重试原请求
  * 3. 刷新失败则跳转到登录页
  *
- * @param originalConfig 原始请求配置
- * @param requestFn 请求执行函数
+ * @param originalConfig 原始请求配置，支持任意类型的请求数据
+ * @param requestFn 请求执行函数，必须是一个能处理通用WebRequestConfig的函数
  * @returns 返回请求结果Promise
+ *
+ * T - 响应数据类型
+ * R - 请求数据类型（默认为any，保持类型灵活性）
+ *
+ * 注意：这里使用了泛型函数类型，使得函数可以处理任何类型的请求配置，
+ * 而不仅限于TokenState类型，从而解决了类型不匹配的问题
  */
-export async function handle401<T>(
-  originalConfig: WebRequestConfig<TokenState>,
-  requestFn: (config: WebRequestConfig<TokenState>) => Promise<WebResponse<T>>
+export async function handle401<T, R = unknown>(
+  originalConfig: WebRequestConfig<R>,
+  requestFn: <U = T, V = R>(config: WebRequestConfig<V>) => Promise<WebResponse<U>>
 ): Promise<WebResponse<T>> {
   // 防止并发请求重复刷新Token
   if (_refreshingTokenPromise) {
@@ -63,7 +69,7 @@ export async function handle401<T>(
     };
 
     // 重新发起原始请求
-    return requestFn(originalConfig);
+    return requestFn<T, R>(originalConfig);
   } catch (error) {
     // 刷新Token失败，清除本地Token信息
     clearToken();
@@ -89,14 +95,17 @@ export async function handle401<T>(
  * @param config 请求配置
  * @returns 处理后的请求配置
  */
-export function requestInterceptor(config: WebRequestConfig<TReq>): WebRequestConfig<TReq> {
+export function requestInterceptor<T = unknown>(config: WebRequestConfig<T>): WebRequestConfig<T> {
   const tokenStore = getToken();
 
   // 如果存在Token且未过期，则添加到请求头
   if (tokenStore.accessToken && !tokenStore.isExpired) {
+    // 构建授权头信息
+    const authHeader = `${tokenStore.tokenType} ${tokenStore.accessToken}`;
+
     config.headers = {
       ...config.headers,
-      Authorization: tokenStore.authHeader
+      Authorization: authHeader
     };
   }
 
