@@ -9,17 +9,18 @@ import * as user from './user'
  * 集中导出所有API，方便统一引入
  */
 
+// 导出通用API
+export * as common from './common';
+
 // 导出登录相关API
-export * from './login/login';
+export * as login from './login';
 
 // 导出用户相关API
-export * from './user/user';
-
-// 导出通用API
-export * from './common/common';
+export * as user from './user';
 
 // 其他API模块在此导出...
 export const Api = {
+  common,
   login,
   user
 }

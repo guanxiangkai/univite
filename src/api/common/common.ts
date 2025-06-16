@@ -3,50 +3,7 @@
  * 包含系统配置、字典数据等通用接口
  */
 import http from '@/utils/api/http';
-import type { WebResponse } from '@/types';
-
-/**
- * 字典项接口
- */
-export interface DictItem {
-  // 字典值
-  value: string | number;
-  // 字典标签
-  label: string;
-  // 字典排序
-  sort?: number;
-  // 字典状态
-  status?: 'enabled' | 'disabled';
-  // 备注
-  remark?: string;
-  // 子项目
-  children?: DictItem[];
-}
-
-/**
- * 系统配置接口
- */
-export interface SystemConfig {
-  // 应用名称
-  appName: string;
-  // 应用版本
-  appVersion: string;
-  // 主题配置
-  theme: {
-    primaryColor: string;
-    textColor: string;
-    backgroundColor: string;
-    [key: string]: string;
-  };
-  // 上传文件配置
-  upload: {
-    maxSize: number;
-    allowTypes: string[];
-    baseUrl: string;
-  };
-  // 其他配置项
-  [key: string]: any;
-}
+import type {DictItem, SystemConfig, WebResponse} from '@/types';
 
 /**
  * 通用API类
@@ -67,25 +24,6 @@ class CommonAPI {
    */
   getSystemConfig(): Promise<WebResponse<SystemConfig>> {
     return http.get<SystemConfig>('/api/system/config');
-  }
-
-  /**
-   * 获取地区数据
-   * @param parentCode 父级地区编码，不传则获取省级列表
-   * @returns 地区列表
-   */
-  getRegions(parentCode?: string): Promise<WebResponse<Array<{
-    code: string;
-    name: string;
-    level: number;
-    parentCode?: string;
-  }>>> {
-    return http.get<Array<{
-      code: string;
-      name: string;
-      level: number;
-      parentCode?: string;
-    }>>(parentCode ? `/api/system/region?parentCode=${parentCode}` : '/api/system/region');
   }
 
   /**

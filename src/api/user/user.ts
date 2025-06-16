@@ -2,7 +2,7 @@
  * 用户相关API接口
  */
 import http from '@/utils/api/http';
-import type { WebResponse } from '@/types';
+import type {WebResponse} from '@/types';
 
 /**
  * 用户基本信息接口
@@ -187,25 +187,6 @@ class UserAPI {
    */
   bindEmail(params: { email: string; code: string }): Promise<WebResponse<{ success: boolean }>> {
     return http.post<{ success: boolean }>('/api/user/bind/email', params);
-  }
-
-  /**
-   * 获取用户收藏列表
-   * @param params 分页参数
-   * @returns 收藏列表
-   */
-  getFavorites(params: { page: number; size: number }): Promise<WebResponse<{
-    items: Array<any>;
-    total: number;
-    page: number;
-    size: number;
-  }>> {
-    return http.get<{
-      items: Array<any>;
-      total: number;
-      page: number;
-      size: number;
-    }>('/api/user/favorites', params);
   }
 
   /**
