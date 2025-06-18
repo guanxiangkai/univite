@@ -90,7 +90,6 @@ pnpm format
 项目已集成多种实用工具类，用于提高开发效率：
 
 - **请求工具**：基于原生 request 封装，支持请求拦截、响应拦截、统一错误处理
-- **Mock 数据**：基于 @faker-js/faker 和 vite-plugin-mock 的数据模拟工具
 - **国际化**：基于 vue-i18n 的多语言支持
 - **防抖节流**：基于 @vueuse/core 的防抖和节流功能
 - **日期处理**：基于 date-fns-tz 的时间日期处理工具

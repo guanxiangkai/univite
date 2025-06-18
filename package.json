@@ -29,7 +29,6 @@
   "devDependencies": {
     "@dcloudio/types": "^3.4.15",
     "@dcloudio/vite-plugin-uni": "3.0.0-4060620250520001",
-    "@faker-js/faker": "^9.8.0",
     "@intlify/unplugin-vue-i18n": "^6.0.8",
     "@tsconfig/node22": "^22.0.2",
     "@types/node": "^24.0.1",

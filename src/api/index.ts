@@ -1,26 +1,15 @@
-/**
- * 工具集统一导出
- */
-// 汇总成统一对象（可选，便于解构调用）
-import * as login from './login'
-import * as user from './user'
-/**
- * API模块统一导出
- * 集中导出所有API，方便统一引入
- */
-
 // 导出通用API
-export * as common from './common';
+import * as Common from './common';
 
 // 导出登录相关API
-export * as login from './login';
+import * as Login from './login';
 
 // 导出用户相关API
-export * as user from './user';
+import * as User from './user';
 
 // 其他API模块在此导出...
 export const Api = {
-  common,
-  login,
-  user
+  Common,
+  Login,
+  User
 }

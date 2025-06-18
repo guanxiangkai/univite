@@ -13,7 +13,7 @@ export default defineConfig(({mode}: ConfigEnv) => {
 
     return {
         publicDir: './public',
-      envDir: './env', // 自定义env目录
+        envDir: './env', // 自定义env目录
         plugins: [
           tsconfigPaths(),
             UniPages({
@@ -59,6 +59,5 @@ export default defineConfig(({mode}: ConfigEnv) => {
             // @ts-expect-error missing types
             uni.default(),
         ],
-
     }
 })
