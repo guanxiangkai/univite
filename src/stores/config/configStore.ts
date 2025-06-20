@@ -3,8 +3,8 @@
  * 管理用户身份、认证信息和个人资料
  * 适配微信小程序和 H5 环境
  */
-import {defineStore} from 'pinia';
-import type {ConfigState} from "@/types";
+import { defineStore } from 'pinia';
+import type { ConfigState } from '@/types';
 
 /**
  * 系统配置存储定义
@@ -24,5 +24,5 @@ export const configStore = defineStore('config', {
     key: 'wx_user_data',
     // 持久化的路径
     paths: ['profile', 'preferences'],
-  }
+  },
 });

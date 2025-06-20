@@ -2,7 +2,7 @@
  * 用户相关API接口
  */
 import http from '@/utils/api/http';
-import type {WebResponse} from '@/types';
+import type { WebResponse } from '@/types';
 
 /**
  * 用户基本信息接口
@@ -149,8 +149,13 @@ class UserAPI {
    * @param settings 设置参数
    * @returns 更新结果
    */
-  updateUserSettings(settings: Partial<UserSettings>): Promise<WebResponse<UserSettings>> {
-    return http.put<UserSettings, Partial<UserSettings>>('/api/user/settings', settings);
+  updateUserSettings(
+    settings: Partial<UserSettings>,
+  ): Promise<WebResponse<UserSettings>> {
+    return http.put<UserSettings, Partial<UserSettings>>(
+      '/api/user/settings',
+      settings,
+    );
   }
 
   /**
@@ -167,8 +172,13 @@ class UserAPI {
    * @param params 密码参数
    * @returns 修改结果
    */
-  updatePassword(params: UpdatePasswordParams): Promise<WebResponse<{ success: boolean }>> {
-    return http.put<{ success: boolean }, UpdatePasswordParams>('/api/user/password', params);
+  updatePassword(
+    params: UpdatePasswordParams,
+  ): Promise<WebResponse<{ success: boolean }>> {
+    return http.put<{ success: boolean }, UpdatePasswordParams>(
+      '/api/user/password',
+      params,
+    );
   }
 
   /**
@@ -176,7 +186,10 @@ class UserAPI {
    * @param params 手机号参数
    * @returns 绑定结果
    */
-  bindPhone(params: { phone: string; code: string }): Promise<WebResponse<{ success: boolean }>> {
+  bindPhone(params: {
+    phone: string;
+    code: string;
+  }): Promise<WebResponse<{ success: boolean }>> {
     return http.post<{ success: boolean }>('/api/user/bind/phone', params);
   }
 
@@ -185,7 +198,10 @@ class UserAPI {
    * @param params 邮箱参数
    * @returns 绑定结果
    */
-  bindEmail(params: { email: string; code: string }): Promise<WebResponse<{ success: boolean }>> {
+  bindEmail(params: {
+    email: string;
+    code: string;
+  }): Promise<WebResponse<{ success: boolean }>> {
     return http.post<{ success: boolean }>('/api/user/bind/email', params);
   }
 
@@ -198,11 +214,15 @@ class UserAPI {
     const formData = new FormData();
     formData.append('avatar', file);
 
-    return http.post<{ avatarUrl: string }, FormData>('/api/user/avatar/upload', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
+    return http.post<{ avatarUrl: string }, FormData>(
+      '/api/user/avatar/upload',
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      },
+    );
   }
 }
 

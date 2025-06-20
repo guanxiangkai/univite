@@ -2,7 +2,13 @@
  * 登录相关API接口
  */
 import http from '@/utils/api/http';
-import type {CaptchaResponse, LoginParams, LoginResponse, RegisterParams, WebResponse} from '@/types';
+import type {
+  CaptchaResponse,
+  LoginParams,
+  LoginResponse,
+  RegisterParams,
+  WebResponse,
+} from '@/types';
 
 /**
  * 登录API类
@@ -31,7 +37,10 @@ class LoginAPI {
    * @returns 注册结果
    */
   register(params: RegisterParams): Promise<WebResponse<LoginResponse>> {
-    return http.post<LoginResponse, RegisterParams>('/api/auth/register', params);
+    return http.post<LoginResponse, RegisterParams>(
+      '/api/auth/register',
+      params,
+    );
   }
 
   /**
@@ -48,7 +57,9 @@ class LoginAPI {
    * @returns 发送结果
    */
   sendResetCode(email: string): Promise<WebResponse<{ sent: boolean }>> {
-    return http.post<{ sent: boolean }>('/api/auth/reset-password/code', { email });
+    return http.post<{ sent: boolean }>('/api/auth/reset-password/code', {
+      email,
+    });
   }
 
   /**

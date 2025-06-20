@@ -7,11 +7,13 @@ import { handle401, requestInterceptor } from './authService';
  * @returns 是否符合 WebResponse<T> 结构
  */
 function isWebResponse<T>(obj: unknown): obj is WebResponse<T> {
-  return !!obj
-    && typeof obj === 'object'
-    && 'code' in obj
-    && 'message' in obj
-    && 'data' in obj;
+  return (
+    !!obj &&
+    typeof obj === 'object' &&
+    'code' in obj &&
+    'message' in obj &&
+    'data' in obj
+  );
 }
 
 /**
@@ -22,7 +24,7 @@ function isWebResponse<T>(obj: unknown): obj is WebResponse<T> {
  * @returns 返回响应结果的Promise
  */
 function request<TResp = unknown, TReq = Record<string, unknown>>(
-  config: WebRequestConfig<TReq>
+  config: WebRequestConfig<TReq>,
 ): Promise<WebResponse<TResp>> {
   // 应用请求拦截器，处理Token等信息
   const processedConfig = requestInterceptor<TReq>(config);
@@ -80,7 +82,7 @@ function request<TResp = unknown, TReq = Record<string, unknown>>(
           resolve({
             code: -1,
             message: '服务端返回格式不规范',
-            data: undefined as unknown as TResp
+            data: undefined as unknown as TResp,
           });
         }
       },
@@ -88,9 +90,10 @@ function request<TResp = unknown, TReq = Record<string, unknown>>(
         // 网络错误或请求被拒绝
         reject({
           code: -2,
-          message: (error && typeof error === 'object' && 'errMsg' in error)
-            ? (error as { errMsg: string }).errMsg
-            : '网络错误',
+          message:
+            error && typeof error === 'object' && 'errMsg' in error
+              ? (error as { errMsg: string }).errMsg
+              : '网络错误',
           data: undefined as unknown as TResp,
         });
       },
@@ -115,13 +118,13 @@ function request<TResp = unknown, TReq = Record<string, unknown>>(
 function get<TResp = unknown, TParams = undefined>(
   url: string,
   params?: TParams,
-  config?: Omit<WebRequestConfig<TParams>, 'url' | 'method' | 'data'>
+  config?: Omit<WebRequestConfig<TParams>, 'url' | 'method' | 'data'>,
 ): Promise<WebResponse<TResp>> {
   return request<TResp, TParams>({
     ...config,
     url,
     method: 'GET',
-    data: params
+    data: params,
   });
 }
 
@@ -136,13 +139,13 @@ function get<TResp = unknown, TParams = undefined>(
 function post<TResp = unknown, TReq = Record<string, unknown>>(
   url: string,
   data?: TReq,
-  config?: Omit<WebRequestConfig<TReq>, 'url' | 'method' | 'data'>
+  config?: Omit<WebRequestConfig<TReq>, 'url' | 'method' | 'data'>,
 ): Promise<WebResponse<TResp>> {
   return request<TResp, TReq>({
     ...config,
     url,
     method: 'POST',
-    data
+    data,
   });
 }
 
@@ -157,13 +160,13 @@ function post<TResp = unknown, TReq = Record<string, unknown>>(
 function put<TResp = unknown, TReq = Record<string, unknown>>(
   url: string,
   data?: TReq,
-  config?: Omit<WebRequestConfig<TReq>, 'url' | 'method' | 'data'>
+  config?: Omit<WebRequestConfig<TReq>, 'url' | 'method' | 'data'>,
 ): Promise<WebResponse<TResp>> {
   return request<TResp, TReq>({
     ...config,
     url,
     method: 'PUT',
-    data
+    data,
   });
 }
 
@@ -178,13 +181,13 @@ function put<TResp = unknown, TReq = Record<string, unknown>>(
 function del<TResp = unknown, TReq = Record<string, unknown>>(
   url: string,
   data?: TReq,
-  config?: Omit<WebRequestConfig<TReq>, 'url' | 'method' | 'data'>
+  config?: Omit<WebRequestConfig<TReq>, 'url' | 'method' | 'data'>,
 ): Promise<WebResponse<TResp>> {
   return request<TResp, TReq>({
     ...config,
     url,
     method: 'DELETE',
-    data
+    data,
   });
 }
 

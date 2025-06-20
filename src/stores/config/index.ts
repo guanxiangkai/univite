@@ -1,1 +1,1 @@
-export * from './configStore'
+export * from './configStore';

@@ -2,7 +2,7 @@
  * Token验证与刷新处理工具
  * 处理接口响应中的Token相关问题，如过期、无效等
  */
-import {getToken, setToken, clearToken} from '@/stores';
+import { getToken, setToken, clearToken } from '@/stores';
 import { refreshTokenAPI } from './tokenRefresher';
 import type { WebRequestConfig, WebResponse, TokenState } from '@/types';
 
@@ -27,7 +27,9 @@ let _refreshingTokenPromise: Promise<TokenState> | null = null;
  */
 export async function handle401<T, R = unknown>(
   originalConfig: WebRequestConfig<R>,
-  requestFn: <U = T, V = R>(config: WebRequestConfig<V>) => Promise<WebResponse<U>>
+  requestFn: <U = T, V = R>(
+    config: WebRequestConfig<V>,
+  ) => Promise<WebResponse<U>>,
 ): Promise<WebResponse<T>> {
   // 防止并发请求重复刷新Token
   if (_refreshingTokenPromise) {
@@ -40,7 +42,7 @@ export async function handle401<T, R = unknown>(
       const tokenStore = getToken();
       originalConfig.headers = {
         ...originalConfig.headers,
-        Authorization: tokenStore.authHeader
+        Authorization: tokenStore.authHeader,
       };
 
       // 重新发起原始请求
@@ -65,7 +67,7 @@ export async function handle401<T, R = unknown>(
     // 更新原始请求中的Token并重试
     originalConfig.headers = {
       ...originalConfig.headers,
-      Authorization: `${newToken.tokenType} ${newToken.accessToken}`
+      Authorization: `${newToken.tokenType} ${newToken.accessToken}`,
     };
 
     // 重新发起原始请求
@@ -82,7 +84,7 @@ export async function handle401<T, R = unknown>(
     return Promise.reject({
       code: 401,
       message: '登录已过期，请重新登录',
-      data: null
+      data: null,
     });
   } finally {
     // 无论成功失败，重置刷新Token的标记
@@ -95,7 +97,9 @@ export async function handle401<T, R = unknown>(
  * @param config 请求配置
  * @returns 处理后的请求配置
  */
-export function requestInterceptor<T = unknown>(config: WebRequestConfig<T>): WebRequestConfig<T> {
+export function requestInterceptor<T = unknown>(
+  config: WebRequestConfig<T>,
+): WebRequestConfig<T> {
   const tokenStore = getToken();
 
   // 如果存在Token且未过期，则添加到请求头
@@ -105,7 +109,7 @@ export function requestInterceptor<T = unknown>(config: WebRequestConfig<T>): We
 
     config.headers = {
       ...config.headers,
-      Authorization: authHeader
+      Authorization: authHeader,
     };
   }
 

@@ -11,5 +11,5 @@ import * as User from './user';
 export const Api = {
   Common,
   Login,
-  User
-}
+  User,
+};

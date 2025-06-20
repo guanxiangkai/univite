@@ -37,7 +37,7 @@ export interface UserState {
   // 用户基本信息
   profile: {
     username: string; // 用户昵称
-    avatar: string;   // 用户头像
+    avatar: string; // 用户头像
   };
 }
 
@@ -45,9 +45,7 @@ export interface UserState {
  * 系统配置状态接口
  * 定义系统全局配置的数据结构
  */
-export interface ConfigState {
-
-}
+export interface ConfigState {}
 
 /**
  * 令牌状态接口

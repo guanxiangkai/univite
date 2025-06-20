@@ -1,1 +1,1 @@
-export * from './tokenStore'
+export * from './tokenStore';

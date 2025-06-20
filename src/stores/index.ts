@@ -5,11 +5,11 @@
  * 支持小程序和H5多端兼容的存储方式
  */
 // 导入 Pinia 核心 API
-import {createPinia} from 'pinia';
+import { createPinia } from 'pinia';
 // 导入持久化插件创建函数
-import {createPersistedStatePlugin} from 'pinia-plugin-persistedstate-2';
+import { createPersistedStatePlugin } from 'pinia-plugin-persistedstate-2';
 // 导入存储工具类
-import {Storage} from '@/utils/stores/storage.ts'
+import { Storage } from '@/utils/stores/storage.ts';
 
 /**
  * 创建全局 Pinia 实例
@@ -31,8 +31,6 @@ pinia.use(persistedStatePlugin);
 // 导出 Pinia 实例供应用使用
 export default pinia;
 
-
 export * from './api';
 export * from './config';
 export * from './user';
-

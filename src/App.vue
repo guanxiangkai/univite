@@ -1,17 +1,11 @@
-<script lang="ts" setup>
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <header>
-
-    <div class="wrapper">
-
-    </div>
+    <div class="wrapper"></div>
   </header>
 
-  <main>
-
-  </main>
+  <main></main>
 </template>
 
 <style scoped>
@@ -25,8 +19,6 @@ header {
 }
 
 @media (min-width: 1024px) {
-
-
   .logo {
     margin: 0 2rem 0 0;
   }

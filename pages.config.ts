@@ -1,47 +1,45 @@
-import {defineUniPages} from '@uni-helper/vite-plugin-uni-pages'
-import {name} from './package.json'
+import { defineUniPages } from '@uni-helper/vite-plugin-uni-pages'
 
 export default defineUniPages({
-
-  // 全局样式配置
   globalStyle: {
-    navigationBarTitleText: name,
-    navigationBarBackgroundColor: '#ffffff',
-    navigationBarTextStyle: 'black',
-    backgroundColor: '#ffffff',
-    backgroundTextStyle: 'light',
-    enablePullDownRefresh: false,
     navigationStyle: 'default',
+    navigationBarTitleText: 'unibest',
+    navigationBarBackgroundColor: '#f8f8f8',
+    navigationBarTextStyle: 'black',
+    backgroundColor: '#FFFFFF',
   },
-
-  // 页面配置
-  pages: [
-    {
-      path: 'pages/login/index',
-      style: {
-        navigationBarTitleText: '用户登录'
-      }
-    }
-  ],
-
+  easycom: {
+    autoscan: true,
+    custom: {
+      '^fg-(.*)': '@/components/fg-$1/fg-$1.vue',
+      '^wd-(.*)': 'wot-design-uni/components/wd-$1/wd-$1.vue',
+      '^(?!z-paging-refresh|z-paging-load-more)z-paging(.*)':
+        'z-paging/components/z-paging$1/z-paging$1.vue',
+    },
+  },
+  // 如果不需要tabBar，推荐使用 spa 模板。（pnpm create xxx -t spa）
   tabBar: {
     color: '#999999',
-    selectedColor: '#5474f2',
-    backgroundColor: '#ffffff',
+    selectedColor: '#018d71',
+    backgroundColor: '#F8F8F8',
     borderStyle: 'black',
+    height: '50px',
+    fontSize: '10px',
+    iconWidth: '24px',
+    spacing: '3px',
     list: [
       {
-        iconPath: '/assets/tabbar/home_default.png',
-        selectedIconPath: '/assets/tabbar/home_active.png',
-        pagePath: 'pages/home/index',
-        text: '首页'
+        iconPath: 'static/tabbar/home.png',
+        selectedIconPath: 'static/tabbar/homeHL.png',
+        pagePath: 'pages/index/index',
+        text: '首页',
       },
       {
-        iconPath: '/assets/tabbar/user_default.png',
-        selectedIconPath: '/assets/tabbar/user_active.png',
-        pagePath: 'pages/user/index',
-        text: '我的'
-      }
-    ]
-  }
+        iconPath: 'static/tabbar/example.png',
+        selectedIconPath: 'static/tabbar/exampleHL.png',
+        pagePath: 'pages/about/about',
+        text: '关于',
+      },
+    ],
+  },
 })

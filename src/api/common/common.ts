@@ -3,7 +3,7 @@
  * 包含系统配置、字典数据等通用接口
  */
 import http from '@/utils/api/http';
-import type {DictItem, SystemConfig, WebResponse} from '@/types';
+import type { DictItem, SystemConfig, WebResponse } from '@/types';
 
 /**
  * 通用API类
@@ -32,27 +32,35 @@ class CommonAPI {
    * @param type 文件类型标识（可选）
    * @returns 文件上传结果
    */
-  uploadFile(file: File, type?: string): Promise<WebResponse<{
-    url: string;
-    name: string;
-    size: number;
-    type: string;
-  }>> {
+  uploadFile(
+    file: File,
+    type?: string,
+  ): Promise<
+    WebResponse<{
+      url: string;
+      name: string;
+      size: number;
+      type: string;
+    }>
+  > {
     const formData = new FormData();
     formData.append('file', file);
     if (type) {
       formData.append('type', type);
     }
 
-    return http.post<{
-      url: string;
-      name: string;
-      size: number;
-      type: string;
-    }, FormData>('/api/system/file/upload', formData, {
+    return http.post<
+      {
+        url: string;
+        name: string;
+        size: number;
+        type: string;
+      },
+      FormData
+    >('/api/system/file/upload', formData, {
       headers: {
-        'Content-Type': 'multipart/form-data'
-      }
+        'Content-Type': 'multipart/form-data',
+      },
     });
   }
 
@@ -60,8 +68,12 @@ class CommonAPI {
    * 获取服务器时间
    * @returns 服务器时间
    */
-  getServerTime(): Promise<WebResponse<{ timestamp: number; formatted: string }>> {
-    return http.get<{ timestamp: number; formatted: string }>('/api/system/time');
+  getServerTime(): Promise<
+    WebResponse<{ timestamp: number; formatted: string }>
+  > {
+    return http.get<{ timestamp: number; formatted: string }>(
+      '/api/system/time',
+    );
   }
 }
 
